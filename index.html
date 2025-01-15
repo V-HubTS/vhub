@@ -1,1 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>V-Hub</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <nav>
+    <div class="logo-name">
+      <img src="https://tse1.mm.bing.net/th/id/OIP.SWYl76B-KKe1_v-HUIFHrwHaHa?w=195&h=194&c=7&r=0&o=5&pid=1.7" alt="Logo">
+      <h1>V-Hub</h1>
+    </div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#" onclick="alert('Games page coming soon!')">Games</a></li>
+      <li><a href="#links">Links</a></li>
+      <li><a href="#tools">Tools</a></li>
+      <li><a href="https://sites.google.com/view/kducksite/px" target="_blank">Proxy</a></li>
+      <li><a href="https://forms.office.com/pages/responsepage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAANAAoWMIzRUNkY1NUhYQk8zQVpGR09YVFhQTFpPRUNHVy4u&route=shorturl" target="_blank">Partner/Request</a></li>
+    </ul>
+  </nav>
 
+  <section id="home">
+    <h1>V-Hub.TS</h1>
+    <p>Welcome to V-Hub.TS's site! Here, we have some games and links to both our sites and other gaming sites! If you want to play games not available here, go to our main site: <a href="https://sites.google.com/view/hubv" target="_blank">sites.google.com/view/hubv</a> or <a href="http://vhub.kduck.site" target="_blank">vhub.kduck.site</a>.</p>
+    <p>V-Hub.TS is a production of A683 for gaming and unblocking.</p>
+
+    <h1>About:blank Embedder</h1>
+    <div class="container">
+      <input type="text" id="urlInput" placeholder="Must include https://">
+      <button onclick="openInAboutBlank()">Go</button>
+    </div>
+  </section>
+
+  <section id="links">
+    <div class="container">
+      <div>
+        <h2>Alternate links to our site</h2>
+        <ul>
+          <li><a href="http://vhub.kduck.site" target="_blank">http://vhub.kduck.site</a></li>
+          <li><a href="https://sites.google.com/view/vhub-text" target="_blank">sites.google.com/view/vhub-text</a></li>
+          <li><a href="https://sites.google.com/view/hubv" target="_blank">sites.google.com/view/hubv</a></li>
+          <li><a href="https://v-hub-4.global.ssl.fastly.net" target="_blank">v-hub-4.global.ssl.fastly.net</a> (may not work)</li>
+          <li><a href="https://sites.google.com/view/v-hub-3" target="_blank">sites.google.com/view/v-hub-3/</a></li>
+          <li><a href="https://vhub5.global.ssl.fastly.net" target="_blank">vhub5.global.ssl.fastly.net</a></li>
+          <li><a href="https://vhub-6.global.ssl.fastly.net" target="_blank">vhub-6.global.ssl.fastly.net</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Links to other gaming/unblocking sites</h2>
+        <ul>
+          <li><a href="https://braindamage.britishz.co.uk" target="_blank">braindamage.britishz.co.uk</a></li>
+          <li><a href="https://britishz.co.uk" target="_blank">britishz.co.uk</a></li>
+          <li><a href="https://freeflowdoge.df.1.wikilegia.com" target="_blank">freeflowdoge.df.1.wikilegia.com</a></li>
+          <li><a href="https://velara-ubg.web.app" target="_blank">velara-ubg.web.app</a></li>
+          <li><a href="https://boredhtml.netlify.app/games" target="_blank">boredhtml.netlify.app/games</a></li>
+          <li><a href="https://acorn13.github.io" target="_blank">acorn13.github.io</a></li>
+          <li><a href="https://quandelmonke.github.io/gwaamees/" target="_blank">quandelmonke.github.io/gwaamees/</a></li>
+          <li><a href="https://selen1teisnowfixed.global.ssl.fastly.net" target="_blank">selen1teisnowfixed.global.ssl.fastly.net</a></li>
+          <li><a href="https://rubyarcade.lol/" target="_blank">rubyarcade.lol/</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="tools">
+    <div class="tool-container">
+      <h2>HTML Code Runner</h2>
+      <textarea id="htmlCode" placeholder="Enter your HTML code here..."></textarea>
+      <button onclick="launchCode()">Launch in new window</button>
+    </div>
+
+    <div class="tool-container">
+      <h2>HTML, CSS, and JavaScript Packager</h2>
+      <textarea id="code-editor" placeholder="Enter your HTML, CSS, and JavaScript code here..."></textarea>
+      <button onclick="downloadFile()">Download HTML File</button>
+    </div>
+
+    <div class="tool-container">
+      <h2>Mass URL Opener</h2>
+      <textarea id="urls" placeholder="Enter URLs here..."></textarea><br>
+      <button onclick="openLinks()">Open Links</button>
+    </div>
+
+    <div class="tool-container">
+      <h2>Attractive Drawing Tool</h2>
+      <div class="container">
+        <div class="controls">
+          <label for="colorPicker">Choose Color: </label>
+          <input type="color" id="colorPicker" value="#000000">
+        </div>
+        <canvas id="drawingCanvas" width="300" height="300"></canvas>
+        <button class="done-btn" onclick="downloadCursor()">Done</button>
+      </div>
+    </div>
+  </section>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
