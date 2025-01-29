@@ -13,7 +13,7 @@
             justify-content: center;
             align-items: center;
             background: black;
-            flex-direction: column; /* Added to arrange tools vertically */
+            flex-direction: column; /* Arranges tools vertically */
         }
 
         @keyframes ripple {
@@ -72,6 +72,61 @@
             display: block;
             margin: 5px 0;
         }
+
+        .url-opener {
+            background-color: black;
+            border: 2px solid #00ffff;
+            box-shadow: 0 0 15px #00ffff;
+            color: white;
+            padding: 20px;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .url-opener textarea {
+            width: 100%;
+            height: 150px;
+            background-color: black;
+            color: white;
+            border: 1px solid #00ffff;
+        }
+
+        .url-opener button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .url-opener button:hover {
+            background-color: #45a049;
+        }
+
+        .phrase-generator {
+            background-color: black;
+            border: 2px solid #00ffff;
+            box-shadow: 0 0 15px #00ffff;
+            color: white;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .phrase-generator button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .phrase-generator button:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
@@ -100,10 +155,43 @@
                 <a href="https://lizzyben1.github.io/poopygamesbeta/">Poopy Games Beta</a>
                 <a href="https://i4lyt.github.io/">I4Lyt</a>
             </div>
+            <div class="url-opener">
+                <h2>Mass URL Opener</h2>
+                <p>Enter the links (one per line) and click "Open Links" to open them in new tabs:</p>
+                <textarea id="urls" placeholder="Enter URLs here..."></textarea><br>
+                <button onclick="openLinks()">Open Links</button>
+            </div>
+            <div class="phrase-generator">
+                <h2>Random Phrase Generator</h2>
+                <button onclick="generatePhrase()">Generate</button>
+                <div id="output"></div>
+                <button onclick="copyPhrase()">Copy Phrase</button>
+            </div>
         </div>
     </div>
 
     <script>
+        const colors = ["Red", "Orange", "Gold", "Yellow", "Green", "Lime", "Blue", "Teal", "Aqua", "Violet", "Pink", "Purple", "Silver", "Gray", "White", "Black", "Scarlet", "Turquoise", "Lavender", "Maroon"];
+        const adjectives = ["Agile", "Brave", "Cunning", "Diligent", "Energetic", "Ferocious", "Graceful", "Hardy", "Intelligent", "Jovial", "Keen", "Lively", "Majestic", "Noble", "Observant", "Playful", "Quick", "Resilient", "Sturdy", "Vibrant"];
+        const livingThings = ["Cat", "Dog", "Bird", "Fish", "Butterfly", "Elephant", "Lion", "Dolphin", "Frog", "Owl", "Snake", "Rabbit", "Squirrel", "Whale", "Deer", "Penguin", "Kangaroo", "Monkey", "Horse", "Turtle"];
+
+        function generatePhrase() {
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            const randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)];
+            const randomLivingThing = livingThings[Math.floor(Math.random() * livingThings.length)];
+            const phrase = `${randomColor} ${randomAdjective} ${randomLivingThing}`;
+            document.getElementById("output").innerText = phrase;
+        }
+
+        function copyPhrase() {
+            const phraseText = document.getElementById("output").innerText;
+            navigator.clipboard.writeText(phraseText).then(() => {
+                alert('Phrase copied to clipboard!');
+            }).catch(err => {
+                console.error('Error copying text: ', err);
+            });
+        }
+
         function updateTime() {
             const now = new Date();
             const time = now.toLocaleTimeString('en-US', { hour12: false });
@@ -119,6 +207,15 @@
             } else {
                 alert("Incorrect password.");
             }
+        }
+
+        function openLinks() {
+            const urls = document.getElementById('urls').value.split('\n');
+            urls.forEach(url => {
+                if (url.trim()) {
+                    window.open(url.trim(), '_blank');
+                }
+            });
         }
 
         setInterval(updateTime, 1000);
