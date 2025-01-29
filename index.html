@@ -61,71 +61,22 @@
             margin-top: 20px;
         }
 
-        .link-list {
-            margin-top: 20px;
-            display: none;
-            text-align: left;
+        .line {
+            position: absolute;
+            background-color: #00ffff;
+            height: 2px;
+            width: 100px;
+            opacity: 0.5;
+            transition: transform 0.2s;
         }
 
-        .link-list a {
-            color: #00ffff;
-            display: block;
-            margin: 5px 0;
-        }
-
-        .url-opener {
-            background-color: black;
-            border: 2px solid #00ffff;
-            box-shadow: 0 0 15px #00ffff;
-            color: white;
-            padding: 20px;
-            margin-top: 20px;
-            width: 100%;
-            max-width: 600px;
-        }
-
-        .url-opener textarea {
-            width: 100%;
-            height: 150px;
-            background-color: black;
-            color: white;
-            border: 1px solid #00ffff;
-        }
-
-        .url-opener button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        .url-opener button:hover {
-            background-color: #45a049;
-        }
-
-        .phrase-generator {
-            background-color: black;
-            border: 2px solid #00ffff;
-            box-shadow: 0 0 15px #00ffff;
-            color: white;
-            padding: 20px;
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .phrase-generator button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        .phrase-generator button:hover {
-            background-color: #45a049;
+        .dot {
+            position: absolute;
+            background-color: #00ffff;
+            height: 4px;
+            width: 4px;
+            border-radius: 50%;
+            opacity: 0.5;
         }
     </style>
 </head>
@@ -141,57 +92,10 @@
                 <input type="password" id="password" placeholder="Enter password">
                 <button onclick="checkPassword()">Submit</button>
             </div>
-            <div id="links" class="link-list">
-                <a href="https://google-snakegame.github.io/">Google Snake Game</a>
-                <a href="https://stickman-hook-game.github.io/">Stickman Hook Game</a>
-                <a href="https://quandelmonke.github.io/gwaamees/">Gwaamees</a>
-                <a href="https://bozomath.netlify.app/">Bozo Math</a>
-                <a href="https://pgsisthebest.bitbucket.io/index.html">PGSisTheBest</a>
-                <a href="https://wetlandgamesjack.github.io/">Wetland Games</a>
-                <a href="https://mango3.netlify.app/">Mango3</a>
-                <a href="https://monkeygg24.netlify.app/">Monkey GG</a>
-                <a href="https://alrightyrdy.github.io/">Alrighty RDY</a>
-                <a href="https://shadowgmes.bitbucket.io/">Shadow Gmes</a>
-                <a href="https://lizzyben1.github.io/poopygamesbeta/">Poopy Games Beta</a>
-                <a href="https://i4lyt.github.io/">I4Lyt</a>
-            </div>
-            <div class="url-opener">
-                <h2>Mass URL Opener</h2>
-                <p>Enter the links (one per line) and click "Open Links" to open them in new tabs:</p>
-                <textarea id="urls" placeholder="Enter URLs here..."></textarea><br>
-                <button onclick="openLinks()">Open Links</button>
-            </div>
-            <div class="phrase-generator">
-                <h2>Random Phrase Generator</h2>
-                <button onclick="generatePhrase()">Generate</button>
-                <div id="output"></div>
-                <button onclick="copyPhrase()">Copy Phrase</button>
-            </div>
         </div>
     </div>
 
     <script>
-        const colors = ["Red", "Orange", "Gold", "Yellow", "Green", "Lime", "Blue", "Teal", "Aqua", "Violet", "Pink", "Purple", "Silver", "Gray", "White", "Black", "Scarlet", "Turquoise", "Lavender", "Maroon"];
-        const adjectives = ["Agile", "Brave", "Cunning", "Diligent", "Energetic", "Ferocious", "Graceful", "Hardy", "Intelligent", "Jovial", "Keen", "Lively", "Majestic", "Noble", "Observant", "Playful", "Quick", "Resilient", "Sturdy", "Vibrant"];
-        const livingThings = ["Cat", "Dog", "Bird", "Fish", "Butterfly", "Elephant", "Lion", "Dolphin", "Frog", "Owl", "Snake", "Rabbit", "Squirrel", "Whale", "Deer", "Penguin", "Kangaroo", "Monkey", "Horse", "Turtle"];
-
-        function generatePhrase() {
-            const randomColor = colors[Math.floor(Math.random() * colors.length)];
-            const randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)];
-            const randomLivingThing = livingThings[Math.floor(Math.random() * livingThings.length)];
-            const phrase = `${randomColor} ${randomAdjective} ${randomLivingThing}`;
-            document.getElementById("output").innerText = phrase;
-        }
-
-        function copyPhrase() {
-            const phraseText = document.getElementById("output").innerText;
-            navigator.clipboard.writeText(phraseText).then(() => {
-                alert('Phrase copied to clipboard!');
-            }).catch(err => {
-                console.error('Error copying text: ', err);
-            });
-        }
-
         function updateTime() {
             const now = new Date();
             const time = now.toLocaleTimeString('en-US', { hour12: false });
@@ -203,23 +107,51 @@
         function checkPassword() {
             const password = document.getElementById('password').value;
             if (password === "aqua207") {
-                document.getElementById('links').style.display = "block";
+                alert("Password correct!");
             } else {
                 alert("Incorrect password.");
             }
         }
 
-        function openLinks() {
-            const urls = document.getElementById('urls').value.split('\n');
-            urls.forEach(url => {
-                if (url.trim()) {
-                    window.open(url.trim(), '_blank');
+        function createLine() {
+            const line = document.createElement('div');
+            line.className = 'line';
+            line.style.top = `${Math.random() * 100}vh`;
+            line.style.left = `${Math.random() * 100}vw`;
+            document.body.appendChild(line);
+            moveLine(line);
+        }
+
+        function moveLine(line) {
+            const duration = 10000 + Math.random() * 10000;
+            const newLeft = `${Math.random() * 100}vw`;
+            const newTop = `${Math.random() * 100}vh`;
+            line.style.transitionDuration = `${duration}ms`;
+            line.style.transform = `translate(${newLeft}, ${newTop})`;
+            setTimeout(() => moveLine(line), duration);
+        }
+
+        function initLines() {
+            for (let i = 0; i < 10; i++) {
+                createLine();
+            }
+        }
+
+        function handleMouseMove(event) {
+            const lines = document.querySelectorAll('.line');
+            lines.forEach(line => {
+                const rect = line.getBoundingClientRect();
+                const distance = Math.sqrt(Math.pow(rect.x - event.clientX, 2) + Math.pow(rect.y - event.clientY, 2));
+                if (distance < 100) {
+                    line.style.transform = `translate(${Math.random() * 100}vw, ${Math.random() * 100}vh)`;
                 }
             });
         }
 
-        setInterval(updateTime, 1000);
+        document.addEventListener('mousemove', handleMouseMove);
         updateTime();
+        setInterval(updateTime, 1000);
+        initLines();
     </script>
 </body>
 </html>
