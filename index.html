@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,6 +55,22 @@
         .date {
             font-size: 24px;
         }
+
+        .password-box {
+            margin-top: 20px;
+        }
+
+        .link-list {
+            margin-top: 20px;
+            display: none;
+            text-align: left;
+        }
+
+        .link-list a {
+            color: #00ffff;
+            display: block;
+            margin: 5px 0;
+        }
     </style>
 </head>
 <body>
@@ -66,6 +81,24 @@
         <div class="glowing-box">
             <div id="time" class="time"></div>
             <div id="date" class="date"></div>
+            <div class="password-box">
+                <input type="password" id="password" placeholder="Enter password">
+                <button onclick="checkPassword()">Submit</button>
+            </div>
+            <div id="links" class="link-list">
+                <a href="https://google-snakegame.github.io/">Google Snake Game</a>
+                <a href="https://stickman-hook-game.github.io/">Stickman Hook Game</a>
+                <a href="https://quandelmonke.github.io/gwaamees/">Gwaamees</a>
+                <a href="https://bozomath.netlify.app/">Bozo Math</a>
+                <a href="https://pgsisthebest.bitbucket.io/index.html">PGSisTheBest</a>
+                <a href="https://wetlandgamesjack.github.io/">Wetland Games</a>
+                <a href="https://mango3.netlify.app/">Mango3</a>
+                <a href="https://monkeygg24.netlify.app/">Monkey GG</a>
+                <a href="https://alrightyrdy.github.io/">Alrighty RDY</a>
+                <a href="https://shadowgmes.bitbucket.io/">Shadow Gmes</a>
+                <a href="https://lizzyben1.github.io/poopygamesbeta/">Poopy Games Beta</a>
+                <a href="https://i4lyt.github.io/">I4Lyt</a>
+            </div>
         </div>
     </div>
 
@@ -76,6 +109,15 @@
             const date = now.toLocaleDateString('en-US');
             document.getElementById('time').innerText = time;
             document.getElementById('date').innerText = date;
+        }
+
+        function checkPassword() {
+            const password = document.getElementById('password').value;
+            if (password === "aqua207") {
+                document.getElementById('links').style.display = "block";
+            } else {
+                alert("Incorrect password.");
+            }
         }
 
         setInterval(updateTime, 1000);
